@@ -33,6 +33,9 @@ export type Digest = {
   status: string;
 };
 
+/**
+ * Retrieves all digests currently awaiting human review from Redis.
+ */
 export async function getPendingDigests(): Promise<Digest[]> {
   const ids = await redis.lrange<string>('digest:index', 0, 49);
   if (!ids || ids.length === 0) return [];
@@ -46,6 +49,10 @@ export async function getPendingDigests(): Promise<Digest[]> {
   return digests;
 }
 
+/**
+ * Updates a digest's status (posted or skipped) after a human reviews it,
+ * and revalidates the dashboard page to reflect the change.
+ */
 export async function markDigestStatus(digestId: string, status: 'posted' | 'skipped') {
   const raw = await redis.get<string>(`digest:${digestId}`);
   if (!raw) return;

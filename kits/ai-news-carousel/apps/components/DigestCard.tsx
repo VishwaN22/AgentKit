@@ -5,6 +5,10 @@ import type { Digest } from '../actions/orchestrate';
 import { markDigestStatus } from '../actions/orchestrate';
 import { SlidePreview } from './SlidePreview';
 
+/**
+ * Renders one pending digest: its slides, caption, and hashtags, with
+ * actions to copy the caption or mark the digest posted/skipped.
+ */
 export function DigestCard({ digest }: { digest: Digest }) {
   const [isPending, startTransition] = useTransition();
   const [copied, setCopied] = useState(false);

@@ -7,6 +7,10 @@ const redis = new Redis({
   token: process.env.UPSTASH_REDIS_REST_KV_REST_API_TOKEN!,
 });
 
+/**
+ * Receives a completed digest from the orchestrator's webhook, validates
+ * the shared secret, and stores it in Redis as ready for human review.
+ */
 export async function POST(req: NextRequest) {
   const secret = req.headers.get('X-Ingest-Secret');
   if (secret !== process.env.INGEST_SHARED_SECRET) {

@@ -3,6 +3,10 @@ import { DigestCard } from '../components/DigestCard';
 
 export const dynamic = 'force-dynamic';
 
+/**
+ * The main review dashboard — lists every digest currently awaiting
+ * human approval before posting to Instagram.
+ */
 export default async function ReviewQueuePage() {
   const digests = await getPendingDigests();
 

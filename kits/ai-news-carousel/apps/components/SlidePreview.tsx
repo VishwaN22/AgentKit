@@ -1,6 +1,10 @@
 
 import type { SlideAsset } from '../actions/orchestrate';
 
+/**
+ * Displays thumbnail previews of a digest's 6 rendered slides, with a
+ * single button to download all of them as a zip.
+ */
 export function SlidePreview({ digestId, slides }: { digestId: string; slides: SlideAsset[] }) {
   return (
     <div>

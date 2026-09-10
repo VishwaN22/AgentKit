@@ -9,6 +9,11 @@ const redis = new Redis({
   token: process.env.UPSTASH_REDIS_REST_KV_REST_API_TOKEN!,
 });
 
+/**
+ * Renders a single carousel slide as a PNG image on the fly, using the
+ * stored digest data. Slide 0 uses a full-bleed cover layout; all other
+ * slides use a top-text/bottom-image layout.
+ */
 export async function GET(
   req: NextRequest,
   { params }: { params: Promise<{ digestId: string; slideNumber: string }> }
